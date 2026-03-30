@@ -162,7 +162,7 @@ body{font-family:var(--sans);background:#EFEFEF;min-height:100vh;display:flex;al
         <span class="tag">Capital Markets</span>
       </div>
       <div class="card-email">
-        <a href="/cdn-cgi/l/email-protection#d8bcbdb6a1abbdb6bc98b5a1adb5b9b6b1acb7bab9f6bbb9">✉ <span class="__cf_email__" data-cfemail="5e3a3b30272d3b303a1e33272b333f30372a313c3f703d3f">[email&#160;protected]</span></a>
+        <a id="email-link" href="#">✉ denysend&#64;myumanitoba.ca</a>
       </div>
       <div class="last-updated" id="last-updated"></div>
     </div>
@@ -209,7 +209,7 @@ body{font-family:var(--sans);background:#EFEFEF;min-height:100vh;display:flex;al
       <a class="social" href="https://www.linkedin.com/in/dmytro-denysenko-61595a2a8/" target="_blank" rel="noopener" title="LinkedIn">
         <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
       </a>
-      <a class="social" href="/cdn-cgi/l/email-protection#e286878c9b91878c86a28f9b978f838c8b968d8083cc8183" title="Email">
+      <a class="social" id="social-email-link" href="#" title="Email">
         <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       </a>
     </div>
@@ -329,8 +329,17 @@ body{font-family:var(--sans);background:#EFEFEF;min-height:100vh;display:flex;al
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+<script>
 document.getElementById('last-updated').textContent = 'Updated ' + new Date().toLocaleDateString('en-CA',{month:'short',year:'numeric'});
+// Build all email hrefs in JS so Cloudflare cannot obfuscate them
+(function(){
+  var u='denysend', d='myumanitoba.ca', addr='mailto:'+u+'@'+d;
+  var l1=document.getElementById('email-link');
+  var l2=document.getElementById('social-email-link');
+  if(l1) l1.href=addr;
+  if(l2) l2.href=addr;
+})();
 
 function openSheet(id) {
   document.getElementById(id+'-overlay').classList.add('open');
@@ -403,7 +412,8 @@ function confirmBook() {
   const mn=new Date().toLocaleString('en-CA',{month:'long'});
   const subj=encodeURIComponent(`Coffee Chat Request — ${mn} ${selDate}`);
   const body=encodeURIComponent(`Hi Dmytro,\n\n${name} would like to book a coffee chat.\nDate: ${mn} ${selDate}\nTime: ${selTime} CST\nEmail: ${email}${note?'\n\nNote: '+note:''}\n\nPlease confirm at your earliest convenience.`);
-  window.location.href=`mailto:denysend@myumanitoba.ca?subject=${subj}&body=${body}`;
+  const em='denysend'+'@'+'myumanitoba.ca';
+  window.location.href=`mailto:${em}?subject=${subj}&body=${body}`;
   document.getElementById('book-body').style.display='none';
   const s=document.getElementById('book-success'); s.style.display='flex';
   document.getElementById('book-success-txt').textContent=`Your request for ${mn} ${selDate} at ${selTime} is on its way. Dmytro will get back to you shortly.`;
