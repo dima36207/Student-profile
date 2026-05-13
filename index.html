@@ -1,512 +1,532 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#ffffff">
-<title>Dmytro Denysenko · Asper School of Business</title>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root {
-  --gold:#F0AB00;--gold-dk:#C48D00;--gold-lt:#FFF8E6;--gold-line:rgba(240,171,0,0.35);
-  --black:#1A1A1A;--gray-dk:#3D3D3D;--gray-mid:#767676;--gray-lt:#F5F5F5;
-  --border:#E0E0E0;--white:#FFFFFF;
-  --serif:'Merriweather',Georgia,serif;--sans:'Inter',system-ui,sans-serif;
-  --r:6px;--r2:12px;--r3:18px;
-}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-body{font-family:var(--sans);background:#EFEFEF;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:2rem 1rem 3rem;}
-.card{width:100%;max-width:420px;background:var(--white);border:1px solid var(--border);border-radius:var(--r3);overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.09),0 1px 4px rgba(0,0,0,0.05);animation:rise 0.6s cubic-bezier(0.16,1,0.3,1) both;}
-@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.header{background:#8B1A2B;padding:0;position:relative;overflow:hidden;}
-.header-pattern{position:absolute;inset:0;pointer-events:none;overflow:hidden;opacity:0.07;}
-.header-pattern svg{position:absolute;right:-20px;top:-20px;width:200px;height:200px;}
-.header-bar{height:5px;background:var(--gold);width:100%;}
-.header-inner{padding:24px 24px 22px;}
-.school-badge{display:flex;align-items:center;gap:8px;margin-bottom:20px;}
-.school-badge-chevron{display:flex;gap:2px;}
-.chevron-shape{width:10px;height:18px;background:var(--gold);clip-path:polygon(0 0,60% 0,100% 50%,60% 100%,0 100%,40% 50%);}
-.chevron-shape:nth-child(2){opacity:0.6;}
-.chevron-shape:nth-child(3){opacity:0.35;}
-.school-name{font-family:var(--sans);font-size:10px;font-weight:600;color:rgba(255,255,255,0.55);letter-spacing:1.2px;text-transform:uppercase;line-height:1.4;}
-.status-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(240,171,0,0.15);border:1px solid rgba(240,171,0,0.4);border-radius:20px;padding:4px 11px;margin-bottom:16px;font-size:10px;font-weight:600;color:var(--gold);letter-spacing:0.6px;text-transform:uppercase;}
-.status-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);}
-.profile{display:flex;align-items:flex-end;gap:16px;margin-bottom:14px;}
-.avatar{width:74px;height:74px;border-radius:12px;background:#5a3a3a url('') center/cover;border:2px solid var(--gold);flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:28px;font-weight:700;color:var(--gold);}
-.name{font-family:var(--serif);font-size:26px;font-weight:700;color:var(--white);line-height:1.1;margin-bottom:6px;letter-spacing:-0.3px;}
-.role{font-size:11px;font-weight:500;color:var(--gold);letter-spacing:0.8px;text-transform:uppercase;line-height:1.5;}
-.dept{font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:0.4px;margin-top:2px;}
-.bio{font-size:11px;color:rgba(255,255,255,0.55);line-height:1.6;margin-bottom:12px;font-style:italic;}
-.tags{display:flex;flex-wrap:wrap;gap:6px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);}
-.tag{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.1);border-radius:4px;font-size:10px;font-weight:500;padding:4px 9px;letter-spacing:0.3px;}
-.card-email{padding-top:10px;padding-bottom:2px;}
-.card-email a{font-size:11px;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.3px;}
-.card-email a:hover{color:rgba(255,255,255,0.7);}
-.last-updated{font-size:10px;color:rgba(255,255,255,0.25);letter-spacing:0.3px;padding-top:6px;}
-.body{padding:20px 22px;display:flex;flex-direction:column;gap:10px;}
-.btn-primary{width:100%;padding:14px 16px;background:var(--gold);color:var(--black);border:none;border-radius:var(--r2);font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:0.3px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;transition:background 0.15s,transform 0.12s;}
-.btn-primary:hover{background:var(--gold-dk);}
-.btn-primary:active{transform:scale(0.98);}
-.btn-primary svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
-.btn-row{width:100%;padding:13px 14px;background:var(--gray-lt);color:var(--black);border:1px solid var(--border);border-radius:var(--r2);font-family:var(--sans);font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:13px;transition:background 0.15s,border-color 0.15s,transform 0.12s;text-align:left;}
-.btn-row:hover{background:#EBEBEB;border-color:#ccc;transform:translateY(-1px);}
-.btn-row:active{transform:scale(0.98);}
-.btn-row-icon{width:36px;height:36px;border-radius:8px;background:var(--white);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.btn-row-icon svg{width:17px;height:17px;stroke:var(--gold-dk);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
-.btn-row-title{font-size:13px;font-weight:600;color:var(--black);}
-.btn-row-sub{font-size:11px;color:var(--gray-mid);margin-top:1px;}
-.btn-row-arrow{margin-left:auto;color:#888;font-size:16px;flex-shrink:0;font-weight:600;}
-.socials{display:flex;justify-content:center;gap:8px;padding-top:4px;}
-.social{width:48px;height:48px;border-radius:10px;background:var(--gray-lt);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer;transition:background 0.15s,border-color 0.15s,transform 0.12s;}
-.social:hover{background:var(--gold-lt);border-color:var(--gold-line);transform:translateY(-2px);}
-.social svg{width:20px;height:20px;stroke:var(--gray-dk);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke 0.15s;}
-.social:hover svg{stroke:var(--gold-dk);}
-.qr-wrap{display:flex;flex-direction:column;align-items:center;gap:8px;padding:4px 0;}
-.qr-box{background:#fff;padding:8px;border-radius:10px;border:1px solid var(--border);}
-.qr-label{font-size:10px;color:var(--gray-mid);letter-spacing:0.3px;text-align:center;}
-.divider{height:1px;background:var(--border);margin:4px 0;}
-.overlay{position:fixed;inset:0;background:rgba(20,20,20,0.5);backdrop-filter:blur(6px);display:none;align-items:flex-end;justify-content:center;z-index:200;}
-.overlay.open{display:flex;}
-.sheet{background:var(--white);border-radius:20px 20px 0 0;border-top:3px solid var(--gold);width:100%;max-width:480px;max-height:92vh;overflow-y:auto;-webkit-overflow-scrolling:touch;animation:sheetUp 0.3s cubic-bezier(0.16,1,0.3,1);padding-bottom:env(safe-area-inset-bottom,16px);box-shadow:0 -4px 32px rgba(0,0,0,0.12);}
-@keyframes sheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
-.sheet-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:10px auto 0;}
-.sheet-close{position:absolute;top:14px;right:16px;width:30px;height:30px;border-radius:50%;background:var(--gray-lt);border:1px solid var(--border);color:var(--gray-mid);font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.15s;}
-.sheet-close:hover{background:var(--border);}
-.sheet-head{padding:16px 22px 14px;border-bottom:1px solid var(--border);position:relative;}
-.sheet-title{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--black);}
-.sheet-sub{font-size:11px;color:var(--gray-mid);margin-top:3px;letter-spacing:0.2px;}
-.pad{padding:20px 22px 28px;}
-.field{margin-bottom:14px;}
-.field-label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;color:var(--gray-dk);margin-bottom:6px;}
-.opt{color:var(--gray-mid);font-weight:400;margin-left:3px;}
-.field-input{width:100%;background:var(--gray-lt);border:1px solid var(--border);border-radius:var(--r2);padding:11px 13px;color:var(--black);font-family:var(--sans);font-size:14px;outline:none;transition:border-color 0.15s;-webkit-appearance:none;}
-.field-input:focus{border-color:var(--gold);background:var(--white);}
-.field-input::placeholder{color:#AAAAAA;}
-.action-btn{width:100%;padding:13px;background:var(--gold);color:var(--black);border:none;border-radius:var(--r2);font-family:var(--sans);font-weight:600;font-size:13px;cursor:pointer;transition:0.15s;margin-top:4px;}
-.action-btn:hover{background:var(--gold-dk);}
-.action-btn:disabled{opacity:0.45;pointer-events:none;}
-.ghost-btn{width:100%;padding:12px;background:var(--gray-lt);color:var(--gray-dk);border:1px solid var(--border);border-radius:var(--r2);font-family:var(--sans);font-size:13px;font-weight:500;cursor:pointer;transition:0.15s;margin-top:8px;}
-.ghost-btn:hover{background:var(--border);}
-.cal-month-lbl{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--black);margin-bottom:12px;}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:16px;}
-.cal-dow{font-size:10px;font-weight:600;color:var(--gray-mid);text-align:center;padding-bottom:5px;text-transform:uppercase;letter-spacing:0.5px;}
-.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:var(--r);font-size:13px;cursor:pointer;color:var(--gray-dk);transition:0.12s;font-weight:500;}
-.cal-day:hover:not(.past){background:var(--gold-lt);color:var(--gold-dk);}
-.cal-day.past{color:#ccc;cursor:not-allowed;pointer-events:none;}
-.cal-day.selected{background:var(--gold);color:var(--black);font-weight:700;}
-.sec-label{font-size:11px;font-weight:600;color:var(--gray-dk);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;}
-.time-grid{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px;}
-.time-chip{border:1px solid var(--border);background:var(--gray-lt);color:var(--gray-dk);border-radius:var(--r);padding:8px 14px;font-family:var(--sans);font-size:12px;font-weight:500;cursor:pointer;transition:0.12s;}
-.time-chip:hover{border-color:var(--gold);color:var(--gold-dk);background:var(--gold-lt);}
-.time-chip.selected{background:var(--gold);border-color:var(--gold);color:var(--black);font-weight:600;}
-.confirm-btn{width:100%;padding:13px;background:var(--gold);color:var(--black);border:none;border-radius:var(--r2);font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;opacity:0.35;pointer-events:none;transition:0.2s;margin-top:4px;}
-.confirm-btn.ready{opacity:1;pointer-events:auto;}
-.success-screen{display:none;flex-direction:column;align-items:center;padding:3rem 2rem;text-align:center;}
-.success-icon{width:56px;height:56px;border-radius:50%;background:rgba(34,197,94,0.1);border:2px solid rgba(34,197,94,0.4);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px;}
-.success-title{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--black);margin-bottom:6px;}
-.success-sub{font-size:13px;color:var(--gray-mid);line-height:1.6;}
-.email-preview{background:var(--gray-lt);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:var(--r2);padding:14px 16px;font-size:13px;color:var(--gray-dk);line-height:1.75;white-space:pre-wrap;margin-top:14px;}
-.loading-line{text-align:center;padding:14px;font-size:12px;color:var(--gray-mid);}
-@keyframes blink{0%,100%{opacity:0.2}50%{opacity:1}}
-.dot{display:inline-block;animation:blink 1.2s infinite}.dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
-.resume-section{margin-bottom:20px;}
-.resume-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gold-dk);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
-.resume-section-title::after{content:'';flex:1;height:1px;background:var(--border);}
-.resume-entry{padding:12px 0;border-bottom:1px solid var(--border);}
-.resume-entry:last-child{border-bottom:none;}
-.resume-entry-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
-.resume-entry-title{font-size:14px;font-weight:600;color:var(--black);line-height:1.3;}
-.resume-entry-date{font-size:11px;color:var(--gray-mid);white-space:nowrap;margin-top:1px;flex-shrink:0;}
-.resume-entry-org{font-size:12px;color:var(--gold-dk);font-weight:500;margin-top:3px;}
-.resume-entry-desc{font-size:12px;color:var(--gray-dk);margin-top:5px;line-height:1.6;}
-.skills-block{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
-.skill-tag{background:var(--gold-lt);border:1px solid var(--gold-line);color:var(--gold-dk);border-radius:4px;font-size:11px;font-weight:500;padding:4px 10px;}
-.lang-tag{background:var(--gray-lt);border:1px solid var(--border);color:var(--gray-dk);border-radius:4px;font-size:11px;font-weight:500;padding:4px 10px;}
-.seeking-block{background:var(--gold-lt);border:1px solid var(--gold-line);border-left:3px solid var(--gold);border-radius:var(--r2);padding:12px 14px;}
-.seeking-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--gold-dk);margin-bottom:4px;}
-.seeking-text{font-size:13px;color:var(--black);line-height:1.5;font-weight:500;}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HydroShinee | Premium Mobile Detailing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        [data-hide] { display: none !important; }
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .cal-day { min-height: 72px; transition: all 0.15s; }
+        .cal-day.has-slots { cursor: pointer; }
+        .cal-day.has-slots:hover { border-color: rgba(59,130,246,0.5) !important; background: rgba(59,130,246,0.05); }
+        .cal-day.selected { border-color: #3b82f6 !important; background: rgba(59,130,246,0.15) !important; }
+        .slot-btn { transition: all 0.15s; }
+        @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+        .fade-in { animation: fadeIn 0.3s ease forwards; }
+        .pulse-dot { width:8px; height:8px; border-radius:50%; background:#22c55e; display:inline-block; animation: pulse-anim 2s infinite; }
+        @keyframes pulse-anim { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:.5;transform:scale(1.3);} }
+        .slot-taken { text-decoration: line-through; opacity: 0.5; cursor: not-allowed; border:1px solid rgba(255,255,255,0.05); background:rgba(255,255,255,0.05); color:#4b5563; }
+        .slot-selected { border:1px solid #3b82f6 !important; background: #2563eb !important; color: white !important; }
+        .slot-available { border:1px solid rgba(255,255,255,0.1); background: #0f172a; color: #e2e8f0; }
+        .slot-available:hover { border-color: #60a5fa !important; background: rgba(37,99,235,0.1) !important; }
+    </style>
 </head>
-<body>
+<body class="bg-slate-950 text-white selection:bg-blue-500 selection:text-white">
 
-<div class="card">
-  <div class="header">
-    <div class="header-bar"></div>
-    <div class="header-pattern">
-      <svg viewBox="0 0 200 200" fill="none"><path d="M20 0 L60 0 L100 100 L60 200 L20 200 L60 100Z" fill="white"/><path d="M60 0 L100 0 L140 100 L100 200 L60 200 L100 100Z" fill="white"/><path d="M100 0 L140 0 L180 100 L140 200 L100 200 L140 100Z" fill="white"/></svg>
-    </div>
-    <div class="header-inner">
-      <div class="school-badge">
-        <div class="school-badge-chevron">
-          <div class="chevron-shape"></div><div class="chevron-shape"></div><div class="chevron-shape"></div>
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 glass-card">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2 group cursor-pointer" onclick="window.scrollTo(0,0)">
+                <div class="bg-blue-600 p-2 rounded-lg group-hover:rotate-12 transition-transform">
+                    <i class="fas fa-droplet text-white"></i>
+                </div>
+                <span class="text-2xl font-black tracking-tighter uppercase">Hydro<span class="text-blue-500">Shinee</span></span>
+            </div>
+            <div class="hidden md:flex items-center space-x-8 font-medium text-sm uppercase tracking-widest">
+                <a href="#services" class="hover:text-blue-400 transition">Services</a>
+                <a href="#booking" class="hover:text-blue-400 transition">Book</a>
+                <a href="#booking" class="bg-blue-600 hover:bg-blue-500 px-6 py-2.5 rounded-full transition shadow-lg shadow-blue-900/20">Book Appointment</a>
+            </div>
+            <button id="navToggle" class="md:hidden text-2xl" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-        <div class="school-name">I.H. Asper School of Business<br>University of Manitoba</div>
-      </div>
-      <div class="status-pill">
-        <div class="status-dot"></div>
-        Seeking Summer 2026 Internship
-      </div>
-      <div class="profile">
-        <div class="avatar">DD</div>
-        <div>
-          <div class="name">Dmytro<br>Denysenko</div>
-          <div class="role">Finance &amp; Accounting</div>
-          <div class="dept">B.Comm (Honours) · Class of 2028</div>
+        <div id="mobileMenu" data-hide class="md:hidden glass-card absolute w-full flex flex-col p-6 space-y-4 border-t border-white/10">
+            <a onclick="closeMobileMenu()" href="#services" class="py-2">Services</a>
+            <a onclick="closeMobileMenu()" href="#booking" class="py-2">Book</a>
+            <a onclick="closeMobileMenu()" href="#booking" class="bg-blue-600 p-3 rounded-xl text-center">Book Now</a>
         </div>
-      </div>
-      <div class="bio">Ukrainian-born finance student focused on capital markets, fluent in English, Ukrainian &amp; Russian.</div>
-      <div class="tags">
-        <span class="tag">Winnipeg, MB</span>
-        <span class="tag">GPA 3.0</span>
-        <span class="tag">EN · UK · RU</span>
-        <span class="tag">Capital Markets</span>
-      </div>
-      <div class="card-email">
-        <a id="email-link" href="#">✉ denysend&#64;myumanitoba.ca</a>
-      </div>
-      <div class="last-updated" id="last-updated"></div>
-    </div>
-  </div>
+    </nav>
 
-  <div class="body">
-    <button class="btn-primary" onclick="openSheet('book')">
-      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      Open Calendar
-    </button>
-
-    <button class="btn-row" onclick="openSheet('resume')">
-      <div class="btn-row-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
-      <div><div class="btn-row-title">View my resume</div><div class="btn-row-sub">Education, experience &amp; skills</div></div>
-      <div class="btn-row-arrow">›</div>
-    </button>
-
-    <button class="btn-row" onclick="downloadResume()">
-      <div class="btn-row-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
-      <div><div class="btn-row-title">Download resume</div><div class="btn-row-sub">Save PDF to your device</div></div>
-      <div class="btn-row-arrow">›</div>
-    </button>
-
-    <button class="btn-row" onclick="openSheet('email')">
-      <div class="btn-row-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-      <div><div class="btn-row-title">Write a follow-up email</div><div class="btn-row-sub">AI drafts a personalized email for you</div></div>
-      <div class="btn-row-arrow">›</div>
-    </button>
-
-    <div class="divider"></div>
-
-    <div class="qr-wrap">
-      <div class="qr-box">
-        <a href="https://www.linkedin.com/in/dmytro-denysenko-61595a2a8/" target="_blank" rel="noopener">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 116 116" width="120" height="120" style="display:block"><rect width="116" height="116" fill="white"/><g fill="black"><rect x="8" y="8" width="4" height="4"/><rect x="12" y="8" width="4" height="4"/><rect x="16" y="8" width="4" height="4"/><rect x="20" y="8" width="4" height="4"/><rect x="24" y="8" width="4" height="4"/><rect x="28" y="8" width="4" height="4"/><rect x="32" y="8" width="4" height="4"/><rect x="44" y="8" width="4" height="4"/><rect x="48" y="8" width="4" height="4"/><rect x="52" y="8" width="4" height="4"/><rect x="64" y="8" width="4" height="4"/><rect x="68" y="8" width="4" height="4"/><rect x="80" y="8" width="4" height="4"/><rect x="84" y="8" width="4" height="4"/><rect x="88" y="8" width="4" height="4"/><rect x="92" y="8" width="4" height="4"/><rect x="96" y="8" width="4" height="4"/><rect x="100" y="8" width="4" height="4"/><rect x="104" y="8" width="4" height="4"/><rect x="8" y="12" width="4" height="4"/><rect x="32" y="12" width="4" height="4"/><rect x="48" y="12" width="4" height="4"/><rect x="52" y="12" width="4" height="4"/><rect x="68" y="12" width="4" height="4"/><rect x="80" y="12" width="4" height="4"/><rect x="104" y="12" width="4" height="4"/><rect x="8" y="16" width="4" height="4"/><rect x="16" y="16" width="4" height="4"/><rect x="20" y="16" width="4" height="4"/><rect x="24" y="16" width="4" height="4"/><rect x="32" y="16" width="4" height="4"/><rect x="40" y="16" width="4" height="4"/><rect x="52" y="16" width="4" height="4"/><rect x="56" y="16" width="4" height="4"/><rect x="68" y="16" width="4" height="4"/><rect x="80" y="16" width="4" height="4"/><rect x="88" y="16" width="4" height="4"/><rect x="92" y="16" width="4" height="4"/><rect x="96" y="16" width="4" height="4"/><rect x="104" y="16" width="4" height="4"/><rect x="8" y="20" width="4" height="4"/><rect x="16" y="20" width="4" height="4"/><rect x="20" y="20" width="4" height="4"/><rect x="24" y="20" width="4" height="4"/><rect x="32" y="20" width="4" height="4"/><rect x="52" y="20" width="4" height="4"/><rect x="56" y="20" width="4" height="4"/><rect x="64" y="20" width="4" height="4"/><rect x="80" y="20" width="4" height="4"/><rect x="88" y="20" width="4" height="4"/><rect x="92" y="20" width="4" height="4"/><rect x="96" y="20" width="4" height="4"/><rect x="104" y="20" width="4" height="4"/><rect x="8" y="24" width="4" height="4"/><rect x="16" y="24" width="4" height="4"/><rect x="20" y="24" width="4" height="4"/><rect x="24" y="24" width="4" height="4"/><rect x="32" y="24" width="4" height="4"/><rect x="44" y="24" width="4" height="4"/><rect x="48" y="24" width="4" height="4"/><rect x="52" y="24" width="4" height="4"/><rect x="60" y="24" width="4" height="4"/><rect x="64" y="24" width="4" height="4"/><rect x="68" y="24" width="4" height="4"/><rect x="72" y="24" width="4" height="4"/><rect x="80" y="24" width="4" height="4"/><rect x="88" y="24" width="4" height="4"/><rect x="92" y="24" width="4" height="4"/><rect x="96" y="24" width="4" height="4"/><rect x="104" y="24" width="4" height="4"/><rect x="8" y="28" width="4" height="4"/><rect x="32" y="28" width="4" height="4"/><rect x="44" y="28" width="4" height="4"/><rect x="48" y="28" width="4" height="4"/><rect x="52" y="28" width="4" height="4"/><rect x="64" y="28" width="4" height="4"/><rect x="68" y="28" width="4" height="4"/><rect x="80" y="28" width="4" height="4"/><rect x="104" y="28" width="4" height="4"/><rect x="8" y="32" width="4" height="4"/><rect x="12" y="32" width="4" height="4"/><rect x="16" y="32" width="4" height="4"/><rect x="20" y="32" width="4" height="4"/><rect x="24" y="32" width="4" height="4"/><rect x="28" y="32" width="4" height="4"/><rect x="32" y="32" width="4" height="4"/><rect x="40" y="32" width="4" height="4"/><rect x="48" y="32" width="4" height="4"/><rect x="56" y="32" width="4" height="4"/><rect x="64" y="32" width="4" height="4"/><rect x="72" y="32" width="4" height="4"/><rect x="80" y="32" width="4" height="4"/><rect x="84" y="32" width="4" height="4"/><rect x="88" y="32" width="4" height="4"/><rect x="92" y="32" width="4" height="4"/><rect x="96" y="32" width="4" height="4"/><rect x="100" y="32" width="4" height="4"/><rect x="104" y="32" width="4" height="4"/><rect x="40" y="36" width="4" height="4"/><rect x="44" y="36" width="4" height="4"/><rect x="48" y="36" width="4" height="4"/><rect x="52" y="36" width="4" height="4"/><rect x="56" y="36" width="4" height="4"/><rect x="60" y="36" width="4" height="4"/><rect x="64" y="36" width="4" height="4"/><rect x="72" y="36" width="4" height="4"/><rect x="8" y="40" width="4" height="4"/><rect x="12" y="40" width="4" height="4"/><rect x="16" y="40" width="4" height="4"/><rect x="24" y="40" width="4" height="4"/><rect x="28" y="40" width="4" height="4"/><rect x="32" y="40" width="4" height="4"/><rect x="36" y="40" width="4" height="4"/><rect x="40" y="40" width="4" height="4"/><rect x="44" y="40" width="4" height="4"/><rect x="60" y="40" width="4" height="4"/><rect x="68" y="40" width="4" height="4"/><rect x="72" y="40" width="4" height="4"/><rect x="76" y="40" width="4" height="4"/><rect x="80" y="40" width="4" height="4"/><rect x="96" y="40" width="4" height="4"/><rect x="16" y="44" width="4" height="4"/><rect x="20" y="44" width="4" height="4"/><rect x="24" y="44" width="4" height="4"/><rect x="28" y="44" width="4" height="4"/><rect x="40" y="44" width="4" height="4"/><rect x="44" y="44" width="4" height="4"/><rect x="56" y="44" width="4" height="4"/><rect x="72" y="44" width="4" height="4"/><rect x="76" y="44" width="4" height="4"/><rect x="80" y="44" width="4" height="4"/><rect x="104" y="44" width="4" height="4"/><rect x="12" y="48" width="4" height="4"/><rect x="16" y="48" width="4" height="4"/><rect x="20" y="48" width="4" height="4"/><rect x="28" y="48" width="4" height="4"/><rect x="32" y="48" width="4" height="4"/><rect x="88" y="48" width="4" height="4"/><rect x="96" y="48" width="4" height="4"/><rect x="100" y="48" width="4" height="4"/><rect x="104" y="48" width="4" height="4"/><rect x="12" y="52" width="4" height="4"/><rect x="28" y="52" width="4" height="4"/><rect x="36" y="52" width="4" height="4"/><rect x="40" y="52" width="4" height="4"/><rect x="44" y="52" width="4" height="4"/><rect x="52" y="52" width="4" height="4"/><rect x="60" y="52" width="4" height="4"/><rect x="64" y="52" width="4" height="4"/><rect x="68" y="52" width="4" height="4"/><rect x="88" y="52" width="4" height="4"/><rect x="100" y="52" width="4" height="4"/><rect x="28" y="56" width="4" height="4"/><rect x="32" y="56" width="4" height="4"/><rect x="40" y="56" width="4" height="4"/><rect x="44" y="56" width="4" height="4"/><rect x="52" y="56" width="4" height="4"/><rect x="60" y="56" width="4" height="4"/><rect x="64" y="56" width="4" height="4"/><rect x="68" y="56" width="4" height="4"/><rect x="72" y="56" width="4" height="4"/><rect x="76" y="56" width="4" height="4"/><rect x="80" y="56" width="4" height="4"/><rect x="92" y="56" width="4" height="4"/><rect x="100" y="56" width="4" height="4"/><rect x="104" y="56" width="4" height="4"/><rect x="16" y="60" width="4" height="4"/><rect x="20" y="60" width="4" height="4"/><rect x="24" y="60" width="4" height="4"/><rect x="28" y="60" width="4" height="4"/><rect x="40" y="60" width="4" height="4"/><rect x="44" y="60" width="4" height="4"/><rect x="56" y="60" width="4" height="4"/><rect x="72" y="60" width="4" height="4"/><rect x="76" y="60" width="4" height="4"/><rect x="80" y="60" width="4" height="4"/><rect x="92" y="60" width="4" height="4"/><rect x="104" y="60" width="4" height="4"/><rect x="8" y="64" width="4" height="4"/><rect x="16" y="64" width="4" height="4"/><rect x="20" y="64" width="4" height="4"/><rect x="32" y="64" width="4" height="4"/><rect x="60" y="64" width="4" height="4"/><rect x="72" y="64" width="4" height="4"/><rect x="76" y="64" width="4" height="4"/><rect x="84" y="64" width="4" height="4"/><rect x="96" y="64" width="4" height="4"/><rect x="100" y="64" width="4" height="4"/><rect x="104" y="64" width="4" height="4"/><rect x="16" y="68" width="4" height="4"/><rect x="44" y="68" width="4" height="4"/><rect x="48" y="68" width="4" height="4"/><rect x="52" y="68" width="4" height="4"/><rect x="56" y="68" width="4" height="4"/><rect x="60" y="68" width="4" height="4"/><rect x="64" y="68" width="4" height="4"/><rect x="68" y="68" width="4" height="4"/><rect x="72" y="68" width="4" height="4"/><rect x="76" y="68" width="4" height="4"/><rect x="80" y="68" width="4" height="4"/><rect x="88" y="68" width="4" height="4"/><rect x="100" y="68" width="4" height="4"/><rect x="28" y="72" width="4" height="4"/><rect x="32" y="72" width="4" height="4"/><rect x="44" y="72" width="4" height="4"/><rect x="52" y="72" width="4" height="4"/><rect x="56" y="72" width="4" height="4"/><rect x="60" y="72" width="4" height="4"/><rect x="72" y="72" width="4" height="4"/><rect x="76" y="72" width="4" height="4"/><rect x="80" y="72" width="4" height="4"/><rect x="84" y="72" width="4" height="4"/><rect x="88" y="72" width="4" height="4"/><rect x="92" y="72" width="4" height="4"/><rect x="40" y="76" width="4" height="4"/><rect x="56" y="76" width="4" height="4"/><rect x="68" y="76" width="4" height="4"/><rect x="72" y="76" width="4" height="4"/><rect x="88" y="76" width="4" height="4"/><rect x="92" y="76" width="4" height="4"/><rect x="100" y="76" width="4" height="4"/><rect x="104" y="76" width="4" height="4"/><rect x="8" y="80" width="4" height="4"/><rect x="12" y="80" width="4" height="4"/><rect x="16" y="80" width="4" height="4"/><rect x="20" y="80" width="4" height="4"/><rect x="24" y="80" width="4" height="4"/><rect x="28" y="80" width="4" height="4"/><rect x="32" y="80" width="4" height="4"/><rect x="40" y="80" width="4" height="4"/><rect x="44" y="80" width="4" height="4"/><rect x="56" y="80" width="4" height="4"/><rect x="64" y="80" width="4" height="4"/><rect x="68" y="80" width="4" height="4"/><rect x="72" y="80" width="4" height="4"/><rect x="80" y="80" width="4" height="4"/><rect x="88" y="80" width="4" height="4"/><rect x="92" y="80" width="4" height="4"/><rect x="100" y="80" width="4" height="4"/><rect x="104" y="80" width="4" height="4"/><rect x="8" y="84" width="4" height="4"/><rect x="32" y="84" width="4" height="4"/><rect x="40" y="84" width="4" height="4"/><rect x="44" y="84" width="4" height="4"/><rect x="52" y="84" width="4" height="4"/><rect x="56" y="84" width="4" height="4"/><rect x="60" y="84" width="4" height="4"/><rect x="64" y="84" width="4" height="4"/><rect x="72" y="84" width="4" height="4"/><rect x="88" y="84" width="4" height="4"/><rect x="92" y="84" width="4" height="4"/><rect x="100" y="84" width="4" height="4"/><rect x="104" y="84" width="4" height="4"/><rect x="8" y="88" width="4" height="4"/><rect x="16" y="88" width="4" height="4"/><rect x="20" y="88" width="4" height="4"/><rect x="24" y="88" width="4" height="4"/><rect x="32" y="88" width="4" height="4"/><rect x="40" y="88" width="4" height="4"/><rect x="44" y="88" width="4" height="4"/><rect x="56" y="88" width="4" height="4"/><rect x="60" y="88" width="4" height="4"/><rect x="72" y="88" width="4" height="4"/><rect x="76" y="88" width="4" height="4"/><rect x="80" y="88" width="4" height="4"/><rect x="84" y="88" width="4" height="4"/><rect x="88" y="88" width="4" height="4"/><rect x="92" y="88" width="4" height="4"/><rect x="104" y="88" width="4" height="4"/><rect x="8" y="92" width="4" height="4"/><rect x="16" y="92" width="4" height="4"/><rect x="20" y="92" width="4" height="4"/><rect x="24" y="92" width="4" height="4"/><rect x="32" y="92" width="4" height="4"/><rect x="48" y="92" width="4" height="4"/><rect x="56" y="92" width="4" height="4"/><rect x="84" y="92" width="4" height="4"/><rect x="88" y="92" width="4" height="4"/><rect x="92" y="92" width="4" height="4"/><rect x="96" y="92" width="4" height="4"/><rect x="104" y="92" width="4" height="4"/><rect x="8" y="96" width="4" height="4"/><rect x="16" y="96" width="4" height="4"/><rect x="20" y="96" width="4" height="4"/><rect x="24" y="96" width="4" height="4"/><rect x="32" y="96" width="4" height="4"/><rect x="40" y="96" width="4" height="4"/><rect x="48" y="96" width="4" height="4"/><rect x="60" y="96" width="4" height="4"/><rect x="68" y="96" width="4" height="4"/><rect x="72" y="96" width="4" height="4"/><rect x="88" y="96" width="4" height="4"/><rect x="104" y="96" width="4" height="4"/><rect x="8" y="100" width="4" height="4"/><rect x="32" y="100" width="4" height="4"/><rect x="40" y="100" width="4" height="4"/><rect x="44" y="100" width="4" height="4"/><rect x="48" y="100" width="4" height="4"/><rect x="56" y="100" width="4" height="4"/><rect x="60" y="100" width="4" height="4"/><rect x="68" y="100" width="4" height="4"/><rect x="72" y="100" width="4" height="4"/><rect x="76" y="100" width="4" height="4"/><rect x="80" y="100" width="4" height="4"/><rect x="88" y="100" width="4" height="4"/><rect x="92" y="100" width="4" height="4"/><rect x="100" y="100" width="4" height="4"/><rect x="8" y="104" width="4" height="4"/><rect x="12" y="104" width="4" height="4"/><rect x="16" y="104" width="4" height="4"/><rect x="20" y="104" width="4" height="4"/><rect x="24" y="104" width="4" height="4"/><rect x="28" y="104" width="4" height="4"/><rect x="32" y="104" width="4" height="4"/><rect x="40" y="104" width="4" height="4"/><rect x="44" y="104" width="4" height="4"/><rect x="52" y="104" width="4" height="4"/><rect x="56" y="104" width="4" height="4"/><rect x="60" y="104" width="4" height="4"/><rect x="64" y="104" width="4" height="4"/><rect x="68" y="104" width="4" height="4"/><rect x="72" y="104" width="4" height="4"/><rect x="76" y="104" width="4" height="4"/><rect x="84" y="104" width="4" height="4"/><rect x="100" y="104" width="4" height="4"/><rect x="104" y="104" width="4" height="4"/></g></svg>
-        </a>
-      </div>
-      <div class="qr-label">Scan to connect on LinkedIn</div>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="socials">
-      <a class="social" href="https://www.linkedin.com/in/dmytro-denysenko-61595a2a8/" target="_blank" rel="noopener" title="LinkedIn">
-        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-      </a>
-      <a class="social" id="social-email-link" href="#" title="Email">
-        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- BOOK SHEET -->
-<div class="overlay" id="book-overlay">
-  <div class="sheet">
-    <div class="sheet-handle"></div>
-    <button class="sheet-close" onclick="closeSheet('book')">✕</button>
-    <div class="sheet-head"><div class="sheet-title">Open Calendar</div><div class="sheet-sub">Pick a date · pick a time · send request</div></div>
-    <div id="book-body" class="pad">
-      <div class="cal-month-lbl" id="cal-month-lbl"></div>
-      <div class="cal-grid" id="cal-grid"></div>
-      <div id="time-section" style="display:none">
-        <div class="sec-label">Pick a time (CST)</div>
-        <div class="time-grid" id="time-grid"></div>
-      </div>
-      <div id="form-section" style="display:none">
-        <div class="field"><label class="field-label">Your name</label><input class="field-input" id="g-name" placeholder="Jane Smith" oninput="checkBook()"></div>
-        <div class="field"><label class="field-label">Your email</label><input class="field-input" id="g-email" type="email" placeholder="jane@example.com" oninput="checkBook()"></div>
-        <div class="field"><label class="field-label">Note <span class="opt">optional</span></label><input class="field-input" id="g-note" placeholder="What's on your mind?"></div>
-        <button class="confirm-btn" id="confirm-btn" onclick="confirmBook()">Send request →</button>
-      </div>
-    </div>
-    <div class="success-screen" id="book-success">
-      <div class="success-icon">✓</div>
-      <div class="success-title">Request sent!</div>
-      <div class="success-sub" id="book-success-txt"></div>
-    </div>
-  </div>
-</div>
-
-<!-- RESUME SHEET -->
-<div class="overlay" id="resume-overlay">
-  <div class="sheet">
-    <div class="sheet-handle"></div>
-    <button class="sheet-close" onclick="closeSheet('resume')">✕</button>
-    <div class="sheet-head"><div class="sheet-title">Dmytro Denysenko</div><div class="sheet-sub">Finance &amp; Accounting · Asper School of Business · Class of 2028</div></div>
-    <div class="pad">
-      <div class="seeking-block" style="margin-bottom:20px">
-        <div class="seeking-label">Actively seeking</div>
-        <div class="seeking-text">Summer 2026 internship in finance, investment banking, or accounting</div>
-      </div>
-      <div class="resume-section">
-        <div class="resume-section-title">Education</div>
-        <div class="resume-entry">
-          <div class="resume-entry-header"><div class="resume-entry-title">B.Comm (Honours) — Finance &amp; Accounting</div><div class="resume-entry-date">2024 – 2028</div></div>
-          <div class="resume-entry-org">I.H. Asper School of Business · University of Manitoba</div>
-          <div class="resume-entry-desc">GPA 3.0 · Winnipeg, MB · Double major in Finance and Accounting. Focused on capital markets, corporate finance, and financial analysis.</div>
+    <!-- HERO -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(30,58,138,0.3),transparent)] pointer-events-none"></div>
+        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+            <span class="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-widest text-blue-400 uppercase bg-blue-400/10 rounded-full border border-blue-400/20">
+                #1 Rated Mobile Detailing
+            </span>
+            <h1 class="text-5xl md:text-8xl font-extrabold mb-6 tracking-tight">
+                The Ultimate <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Showroom Shine.</span>
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+                Professional mobile detailing that comes to your driveway. Eco-friendly products and precision tools to restore your vehicle's soul.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 px-10 py-4 rounded-2xl font-bold text-lg transition-all transform hover:scale-105">
+                    Start Your Shine
+                </button>
+                <button onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})" class="w-full sm:w-auto glass-card px-10 py-4 rounded-2xl font-bold text-lg hover:bg-white/5 transition-all">
+                    View Packages
+                </button>
+            </div>
         </div>
-      </div>
-      <div class="resume-section">
-        <div class="resume-section-title">Experience</div>
-        <div class="resume-entry">
-          <div class="resume-entry-header"><div class="resume-entry-title">Usher</div><div class="resume-entry-date">2024 – Present</div></div>
-          <div class="resume-entry-org">Concert Hall · Winnipeg, MB</div>
-          <div class="resume-entry-desc">Front-of-house operations, guest services, and event coordination in a fast-paced, professional environment.</div>
-        </div>
-        <div class="resume-entry">
-          <div class="resume-entry-header"><div class="resume-entry-title">Community Assistant</div><div class="resume-entry-date">2024</div></div>
-          <div class="resume-entry-org">Steinbach Family Resource Center · Steinbach, MB</div>
-          <div class="resume-entry-desc">Provided community support services, developing interpersonal communication and client-facing skills.</div>
-        </div>
-      </div>
-      <div class="resume-section">
-        <div class="resume-section-title">Skills</div>
-        <div class="skills-block">
-          <span class="skill-tag">Capital Markets</span><span class="skill-tag">Financial Modeling</span><span class="skill-tag">Excel</span><span class="skill-tag">Bloomberg</span><span class="skill-tag">Corporate Finance</span><span class="skill-tag">Financial Analysis</span>
-        </div>
-      </div>
-      <div class="resume-section">
-        <div class="resume-section-title">Languages</div>
-        <div class="skills-block"><span class="lang-tag">English</span><span class="lang-tag">Ukrainian</span><span class="lang-tag">Russian</span></div>
-      </div>
-    </div>
-  </div>
-</div>
+    </section>
 
-<!-- EMAIL SHEET -->
-<div class="overlay" id="email-overlay">
-  <div class="sheet">
-    <div class="sheet-handle"></div>
-    <button class="sheet-close" onclick="closeSheet('email')">✕</button>
-    <div class="sheet-head"><div class="sheet-title">Write a follow-up email</div><div class="sheet-sub">From Dmytro · AI drafts it · you send it</div></div>
-    <div class="pad">
-      <div class="field">
-        <label class="field-label">Their name</label>
-        <input class="field-input" id="fu-name" placeholder="e.g. Sarah Chen">
-      </div>
-      <div class="field">
-        <label class="field-label">Their role <span class="opt">optional</span></label>
-        <input class="field-input" id="fu-role" placeholder="e.g. Recruiter at RBC Capital Markets">
-      </div>
-      <div class="field">
-        <label class="field-label">Where you met <span class="opt">optional</span></label>
-        <input class="field-input" id="fu-where" placeholder="e.g. Asper networking night, March 2026">
-      </div>
-      <div class="field">
-        <label class="field-label">Purpose of email</label>
-        <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px" id="purpose-chips">
-          <div class="time-chip" onclick="selectPurpose(this,'coffee chat')">☕ Coffee chat</div>
-          <div class="time-chip" onclick="selectPurpose(this,'just connect and stay in touch')">🤝 Just connect</div>
-          <div class="time-chip" onclick="selectPurpose(this,'__custom__')">✏️ Other…</div>
+    <!-- SERVICES -->
+    <section id="services" class="py-24 bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16">
+                <h2 class="text-4xl font-bold mb-2">Our Services</h2>
+                <p class="text-gray-400">Tailored packages for every vehicle type.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                <div class="glass-card p-8 rounded-3xl group hover:border-blue-500/50 transition-colors">
+                    <div class="text-blue-500 text-3xl mb-6"><i class="fas fa-couch"></i></div>
+                    <h3 class="text-2xl font-bold mb-2">Full Interior Detailing</h3>
+                    <p class="text-blue-400 text-3xl font-black mb-4">$40</p>
+                    <ul class="text-gray-400 space-y-3 mb-8">
+                        <li><i class="fas fa-check text-blue-500 mr-2"></i>Deep Vacuum & Shampoo</li>
+                        <li><i class="fas fa-check text-blue-500 mr-2"></i>Dashboard & Console Wipe-Down</li>
+                        <li><i class="fas fa-check text-blue-500 mr-2"></i>Window Cleaning (Interior)</li>
+                        <li><i class="fas fa-check text-blue-500 mr-2"></i>Door Panel & Trim Detail</li>
+                        <li><i class="fas fa-check text-blue-500 mr-2"></i>Odor Elimination Treatment</li>
+                    </ul>
+                    <a href="#booking" class="block w-full py-3 rounded-xl bg-white/5 group-hover:bg-blue-600 transition-all font-semibold text-center">Book Now — $40</a>
+                </div>
+                <div class="glass-card p-8 rounded-3xl border-blue-600 relative overflow-hidden shadow-2xl shadow-blue-600/10">
+                    <div class="absolute top-0 right-0 bg-blue-600 px-4 py-1 text-xs font-bold rounded-bl-xl">POPULAR</div>
+                    <div class="text-blue-500 text-3xl mb-6"><i class="fas fa-gem"></i></div>
+                    <h3 class="text-2xl font-bold mb-2">Wash + Interior Detailing</h3>
+                    <p class="text-blue-400 text-3xl font-black mb-4">$55</p>
+                    <ul class="text-gray-400 space-y-3 mb-8">
+                        <li><i class="fas fa-check text-blue-500 mr-2"></i>Hand Wash & Dry (Exterior)</li>
+                        <li><i class="fas fa-check text-blue-500 mr-2"></i>Tire Shine & Wheel Clean</li>
+                        <li><i class="fas fa-check text-blue-500 mr-2"></i>Full Interior Deep Clean</li>
+                        <li><i class="fas fa-check text-blue-500 mr-2"></i>Dashboard & Console Wipe-Down</li>
+                        <li><i class="fas fa-check text-blue-500 mr-2"></i>All Windows (Inside & Out)</li>
+                        <li><i class="fas fa-check text-blue-500 mr-2"></i>Odor Elimination Treatment</li>
+                    </ul>
+                    <a href="#booking" class="block w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 transition-all font-semibold text-center">Book Now — $55</a>
+                </div>
+            </div>
         </div>
-        <input class="field-input" id="fu-custom" placeholder="Describe what you'd like to say…" style="display:none;margin-top:4px">
-      </div>
-      <button class="action-btn" id="fu-btn" onclick="generateEmail()">Generate email</button>
-      <div class="loading-line" id="fu-loading" style="display:none">Writing<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></div>
-      <div class="email-preview" id="email-preview" style="display:none"></div>
-      <div style="display:none;gap:8px;margin-top:8px" id="email-actions">
-        <button class="action-btn" onclick="sendEmail()" style="margin-top:0">Open in email app →</button>
-        <button class="ghost-btn" onclick="copyEmail()" style="display:block;margin-top:0">Copy to clipboard</button>
-      </div>
-    </div>
-  </div>
-</div>
+    </section>
 
+    <!-- BOOKING + CALENDAR -->
+    <section id="booking" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-2">Book Your Appointment</h2>
+                <p class="text-gray-400">
+                    <span class="pulse-dot mr-2"></span>
+                    Live availability — updates in real time across all devices.
+                </p>
+            </div>
+
+            <div id="calLoading" class="text-center py-20 text-gray-500">
+                <i class="fas fa-spinner fa-spin text-3xl mb-4 block text-blue-500"></i>
+                Loading availability...
+            </div>
+
+            <div id="calContent" data-hide class="grid lg:grid-cols-2 gap-10 items-start">
+
+                <!-- CALENDAR -->
+                <div class="glass-card p-6 rounded-3xl">
+                    <div class="flex items-center justify-between mb-6">
+                        <button id="prevMonthBtn" class="p-2 hover:bg-white/10 rounded-lg transition"><i class="fas fa-chevron-left"></i></button>
+                        <h3 id="monthLabel" class="text-xl font-bold"></h3>
+                        <button id="nextMonthBtn" class="p-2 hover:bg-white/10 rounded-lg transition"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="grid grid-cols-7 gap-1 mb-2">
+                        <div class="text-center text-xs font-bold text-gray-500 py-1">Sun</div>
+                        <div class="text-center text-xs font-bold text-gray-500 py-1">Mon</div>
+                        <div class="text-center text-xs font-bold text-gray-500 py-1">Tue</div>
+                        <div class="text-center text-xs font-bold text-gray-500 py-1">Wed</div>
+                        <div class="text-center text-xs font-bold text-gray-500 py-1">Thu</div>
+                        <div class="text-center text-xs font-bold text-gray-500 py-1">Fri</div>
+                        <div class="text-center text-xs font-bold text-gray-500 py-1">Sat</div>
+                    </div>
+                    <div id="calGrid" class="grid grid-cols-7 gap-1"></div>
+                    <div class="flex flex-wrap gap-4 mt-5 text-xs text-gray-500">
+                        <span><span class="inline-block w-2 h-2 rounded-full bg-green-400 mr-1"></span>Available</span>
+                        <span><span class="inline-block w-2 h-2 rounded-full bg-red-400 mr-1"></span>Fully Booked</span>
+                        <span><span class="inline-block w-2 h-2 rounded-full bg-blue-400 mr-1"></span>Today / Selected</span>
+                    </div>
+                </div>
+
+                <!-- TIME SLOTS + FORM -->
+                <div class="space-y-6">
+                    <div class="glass-card p-6 rounded-3xl">
+                        <h3 class="font-bold text-base mb-4">
+                            <span id="slotPrompt" class="text-gray-400">
+                                <i class="fas fa-hand-pointer mr-2"></i>Select a date to see times
+                            </span>
+                            <span id="slotHeader" data-hide>
+                                <i class="fas fa-clock text-blue-400 mr-2"></i>
+                                Available Times — <span id="slotDateLabel" class="text-blue-400"></span>
+                            </span>
+                        </h3>
+                        <div id="slotGrid" data-hide class="grid grid-cols-2 gap-2"></div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-3xl">
+                        <div id="bookingForm" class="space-y-4">
+                            <h3 class="font-bold text-base mb-1"><i class="fas fa-user text-blue-400 mr-2"></i>Your Details</h3>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="text-xs font-semibold text-gray-400 block mb-1">Full Name *</label>
+                                    <input id="fName" type="text" class="w-full bg-slate-900 border border-white/10 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-blue-500 transition" placeholder="John Doe">
+                                </div>
+                                <div>
+                                    <label class="text-xs font-semibold text-gray-400 block mb-1">Phone *</label>
+                                    <input id="fPhone" type="tel" class="w-full bg-slate-900 border border-white/10 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-blue-500 transition" placeholder="(555) 000-0000">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold text-gray-400 block mb-1">Email *</label>
+                                <input id="fEmail" type="email" class="w-full bg-slate-900 border border-white/10 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-blue-500 transition" placeholder="you@example.com">
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold text-gray-400 block mb-1">Service *</label>
+                                <select id="fService" class="w-full bg-slate-900 border border-white/10 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-blue-500 transition appearance-none">
+                                    <option>Full Interior Detailing — $40</option>
+                                    <option>Wash + Interior Detailing — $55</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold text-gray-400 block mb-1">Vehicle & Notes</label>
+                                <textarea id="fNotes" rows="2" class="w-full bg-slate-900 border border-white/10 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-blue-500 transition resize-none" placeholder="e.g. 2020 Honda Civic, silver..."></textarea>
+                            </div>
+                            <div id="bookingSummary" data-hide class="bg-blue-600/10 border border-blue-500/30 rounded-xl p-3 text-sm fade-in">
+                                <i class="fas fa-calendar-check text-blue-400 mr-2"></i>
+                                <span id="bookingSummaryText" class="text-blue-300 font-semibold"></span>
+                            </div>
+                            <div id="bookingWarning" class="text-xs text-yellow-400/60">
+                                <i class="fas fa-triangle-exclamation mr-1"></i>Select a date and time slot above first.
+                            </div>
+                            <button id="submitBtn" onclick="submitBooking()"
+                                class="w-full bg-blue-600 hover:bg-blue-500 disabled:opacity-40 disabled:cursor-not-allowed py-3.5 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2">
+                                <span id="submitBtnText">Confirm Booking</span>
+                            </button>
+                        </div>
+
+                        <div id="bookingSuccess" data-hide class="text-center py-6 space-y-3 fade-in">
+                            <div class="text-5xl text-green-400"><i class="fas fa-circle-check"></i></div>
+                            <h3 class="text-xl font-bold">You're Booked!</h3>
+                            <p class="text-gray-400 text-sm">
+                                <span id="successDateText" class="text-white font-semibold block"></span>
+                                We'll reach out shortly to confirm.
+                            </p>
+                            <button onclick="resetForm()" class="text-blue-400 underline text-sm mt-2">Book another appointment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 border-t border-white/5 text-center text-gray-500">
+        <div class="flex justify-center space-x-6 mb-6">
+            <a href="#" class="hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a>
+            <a href="#" class="hover:text-white transition"><i class="fab fa-facebook text-xl"></i></a>
+            <a href="#" class="hover:text-white transition"><i class="fab fa-tiktok text-xl"></i></a>
+        </div>
+        <p>&copy; 2025 HydroShinee Mobile Detailing. Built with precision.</p>
+    </footer>
+
+<!-- ─── Scripts at bottom so DOM + Firebase SDKs are ready before our code runs ─── -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 
 <script>
-document.getElementById('last-updated').textContent = 'Updated ' + new Date().toLocaleDateString('en-CA',{month:'short',year:'numeric'});
-// Build all email hrefs in JS so Cloudflare cannot obfuscate them
-(function(){
-  var u='denysend', d='myumanitoba.ca', addr='mailto:'+u+'@'+d;
-  var l1=document.getElementById('email-link');
-  var l2=document.getElementById('social-email-link');
-  if(l1) l1.href=addr;
-  if(l2) l2.href=addr;
-})();
+// ── EmailJS ───────────────────────────────────────────────────────────────
+emailjs.init({ publicKey: "ksdUg85D2sKCk7rDC" });
 
-function openSheet(id) {
-  document.getElementById(id+'-overlay').classList.add('open');
-  if(id==='book') initCal();
+// ── Firebase ──────────────────────────────────────────────────────────────
+firebase.initializeApp({
+    apiKey: "AIzaSyDkqUBCgdsPcljV5RojUG8yBOmfKqEmC3M",
+    authDomain: "hydroshinee-ec290.firebaseapp.com",
+    databaseURL: "https://hydroshinee-ec290-default-rtdb.firebaseio.com",
+    projectId: "hydroshinee-ec290",
+    storageBucket: "hydroshinee-ec290.firebasestorage.app",
+    messagingSenderId: "308627879399",
+    appId: "1:308627879399:web:99d4157bb2484ba2813942"
+});
+const db = firebase.database();
+
+// ── Config ────────────────────────────────────────────────────────────────
+const DEFAULT_SLOTS = [
+    '8:00 AM','9:00 AM','10:00 AM','11:00 AM',
+    '12:00 PM','1:00 PM','2:00 PM','3:00 PM','4:00 PM','5:00 PM'
+];
+const WORK_DAYS = [1,2,3,4,5,6]; // Mon–Sat
+
+// ── State ─────────────────────────────────────────────────────────────────
+let bookings    = {};
+let viewYear    = new Date().getFullYear();
+let viewMonth   = new Date().getMonth();
+let selectedDate = null;
+let selectedTime = null;
+
+// ── Helpers ───────────────────────────────────────────────────────────────
+const show = el => el && el.removeAttribute('data-hide');
+const hide = el => el && el.setAttribute('data-hide','');
+const $    = id  => document.getElementById(id);
+
+function toDateStr(date) {
+    return date.getFullYear() + '-' +
+        String(date.getMonth()+1).padStart(2,'0') + '-' +
+        String(date.getDate()).padStart(2,'0');
 }
-function closeSheet(id) {
-  document.getElementById(id+'-overlay').classList.remove('open');
+function slotKey(t) { return t.replace(/[:.]/g,'-').replace(/ /g,'_'); }
+function formatDate(ds) {
+    return new Date(ds + 'T12:00:00')
+        .toLocaleDateString('en-US', { weekday:'short', month:'long', day:'numeric' });
 }
-document.querySelectorAll('.overlay').forEach(el => {
-  el.addEventListener('click', e => { if(e.target===el) el.classList.remove('open'); });
+
+// ── Mobile menu ───────────────────────────────────────────────────────────
+function toggleMobileMenu() {
+    const m = $('mobileMenu'), icon = $('navToggle').querySelector('i');
+    if (m.hasAttribute('data-hide')) { show(m); icon.className='fas fa-times'; }
+    else { hide(m); icon.className='fas fa-bars'; }
+}
+function closeMobileMenu() {
+    hide($('mobileMenu'));
+    $('navToggle').querySelector('i').className='fas fa-bars';
+}
+
+// ── Calendar ──────────────────────────────────────────────────────────────
+function buildCalendar() {
+    const today = new Date(); today.setHours(0,0,0,0);
+    const first = new Date(viewYear, viewMonth, 1);
+    const last  = new Date(viewYear, viewMonth+1, 0);
+    $('monthLabel').textContent = first.toLocaleDateString('en-US',{month:'long',year:'numeric'});
+
+    const days = [];
+    for (let i = 0; i < first.getDay(); i++) {
+        const d = new Date(first); d.setDate(d.getDate()-(first.getDay()-i));
+        days.push({date:d,current:false});
+    }
+    for (let d = 1; d <= last.getDate(); d++)
+        days.push({date:new Date(viewYear,viewMonth,d),current:true});
+    while (days.length < 42) {
+        const d = new Date(last);
+        d.setDate(last.getDate()+(days.length-last.getDate()-first.getDay()+1));
+        days.push({date:d,current:false});
+    }
+
+    const grid = $('calGrid');
+    grid.innerHTML = '';
+
+    days.forEach(({date,current}) => {
+        const ds        = toDateStr(date);
+        const isWorkDay = WORK_DAYS.includes(date.getDay());
+        const isPast    = date < today;
+        const isToday   = date.toDateString()===today.toDateString();
+        const blocked   = isWorkDay ? getBlockedSlots(ds).size : 0;
+        const available = isWorkDay ? Math.max(0, DEFAULT_SLOTS.length-blocked) : 0;
+
+        const cell = document.createElement('div');
+        cell.className = 'cal-day rounded-xl border border-white/5 p-1.5 text-sm';
+
+        if (!current || isPast) { cell.style.opacity='0.2'; cell.style.pointerEvents='none'; }
+        if (isToday)  cell.style.borderColor='rgba(59,130,246,0.5)';
+        if (ds===selectedDate) cell.classList.add('selected');
+
+        if (current && !isPast && isWorkDay) {
+            if (available > 0) {
+                cell.classList.add('has-slots');
+                cell.onclick = () => selectDate(ds);
+            } else {
+                cell.style.opacity='0.4';
+                cell.style.cursor='not-allowed';
+            }
+        }
+
+        let inner = `<div class="font-semibold text-xs">${date.getDate()}</div>`;
+        if (current && !isPast && isWorkDay) {
+            inner += available > 0
+                ? `<div style="font-size:10px;color:#4ade80;font-weight:600;margin-top:2px">${available} open</div>`
+                : `<div style="font-size:10px;color:#f87171;font-weight:600;margin-top:2px">Full</div>`;
+        }
+        cell.innerHTML = inner;
+        grid.appendChild(cell);
+    });
+}
+
+$('prevMonthBtn').onclick = () => {
+    if (viewMonth===0){viewMonth=11;viewYear--;} else viewMonth--;
+    buildCalendar();
+};
+$('nextMonthBtn').onclick = () => {
+    if (viewMonth===11){viewMonth=0;viewYear++;} else viewMonth++;
+    buildCalendar();
+};
+
+// ── Build blocked slots set for a day (booked slot + next 4 slots = 4hr job) ──
+function getBlockedSlots(ds) {
+    const dayBookings = (bookings[ds] && typeof bookings[ds]==='object') ? bookings[ds] : {};
+    const blocked = new Set();
+    DEFAULT_SLOTS.forEach((time, i) => {
+        if (dayBookings[slotKey(time)]) {
+            // Block the booked slot and the 4 slots after it
+            for (let j = i; j < Math.min(i + 5, DEFAULT_SLOTS.length); j++) {
+                blocked.add(DEFAULT_SLOTS[j]);
+            }
+        }
+    });
+    return blocked;
+}
+
+// ── Select date ───────────────────────────────────────────────────────────
+function selectDate(ds) {
+    selectedDate = ds;
+    selectedTime = null;
+    buildCalendar();
+
+    hide($('slotPrompt')); show($('slotHeader'));
+    $('slotDateLabel').textContent = formatDate(ds);
+
+    const d = new Date(ds+'T12:00:00');
+    if (!WORK_DAYS.includes(d.getDay())) { $('slotGrid').innerHTML=''; return; }
+
+    const dayBookings = (bookings[ds] && typeof bookings[ds]==='object') ? bookings[ds] : {};
+    const blocked = getBlockedSlots(ds);
+    const sg = $('slotGrid');
+    sg.innerHTML = '';
+    show(sg);
+
+    DEFAULT_SLOTS.forEach(time => {
+        const isBooked  = !!dayBookings[slotKey(time)];
+        const isBlocked = blocked.has(time);
+        const btn = document.createElement('button');
+        btn.className = 'slot-btn py-2.5 px-3 rounded-xl text-xs font-semibold';
+
+        if (isBooked) {
+            btn.classList.add('slot-taken');
+            btn.textContent = time+' · Booked';
+            btn.disabled = true;
+        } else if (isBlocked) {
+            btn.classList.add('slot-taken');
+            btn.textContent = time+' · Unavailable';
+            btn.disabled = true;
+        } else {
+            btn.classList.add('slot-available');
+            btn.textContent = time;
+            btn.onclick = () => {
+                selectedTime = time;
+                document.querySelectorAll('.slot-btn:not(.slot-taken)').forEach(b => {
+                    b.classList.remove('slot-selected');
+                    b.classList.add('slot-available');
+                });
+                btn.classList.remove('slot-available');
+                btn.classList.add('slot-selected');
+                updateSummary();
+            };
+        }
+        sg.appendChild(btn);
+    });
+    updateSummary();
+}
+
+function updateSummary() {
+    if (selectedDate && selectedTime) {
+        $('bookingSummaryText').textContent = formatDate(selectedDate)+' at '+selectedTime;
+        show($('bookingSummary')); hide($('bookingWarning'));
+        $('submitBtn').disabled = false;
+    } else {
+        hide($('bookingSummary')); show($('bookingWarning'));
+        $('submitBtn').disabled = true;
+    }
+}
+
+// ── Submit ────────────────────────────────────────────────────────────────
+async function submitBooking() {
+    const name    = $('fName').value.trim();
+    const phone   = $('fPhone').value.trim();
+    const email   = $('fEmail').value.trim();
+    const service = $('fService').value;
+    const notes   = $('fNotes').value.trim();
+
+    if (!name||!phone||!email||!selectedDate||!selectedTime) {
+        alert('Please fill in all required fields and select a date & time.'); return;
+    }
+
+    $('submitBtn').disabled = true;
+    $('submitBtnText').innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Booking...';
+
+    const key     = slotKey(selectedTime);
+    const slotRef = db.ref(`bookings/${selectedDate}/${key}`);
+
+    try {
+        const snap = await slotRef.once('value');
+        if (snap.val() !== null) {
+            alert('That slot was just taken — please pick another time.');
+            $('submitBtn').disabled = false;
+            $('submitBtnText').textContent = 'Confirm Booking';
+            return;
+        }
+
+        await slotRef.set({ name, phone, email, service, notes: notes||'', bookedAt: new Date().toISOString() });
+
+        try {
+            await emailjs.send('service_gzp62zl','template_3o03qtg',{
+                to_email: 'hydroshinedetailing29@gmail.com',
+                from_name: name, from_phone: phone, from_email: email,
+                service,
+                preferred_date: formatDate(selectedDate)+' at '+selectedTime,
+                notes: notes||'N/A'
+            });
+        } catch(e) { console.warn('Email send failed (booking was still saved):', e); }
+
+        hide($('bookingForm'));
+        show($('bookingSuccess'));
+        $('successDateText').textContent = formatDate(selectedDate)+' at '+selectedTime;
+
+    } catch(err) {
+        console.error('Firebase error:', err);
+        const msg = err.code==='PERMISSION_DENIED'
+            ? 'Permission denied.\n\nGo to Firebase Console → Realtime Database → Rules and set both ".read" and ".write" to true, then click Publish.'
+            : 'Booking failed: '+err.message;
+        alert(msg);
+        $('submitBtn').disabled = false;
+        $('submitBtnText').textContent = 'Confirm Booking';
+    }
+}
+
+// ── Reset ─────────────────────────────────────────────────────────────────
+function resetForm() {
+    selectedDate = selectedTime = null;
+    ['fName','fPhone','fEmail','fNotes'].forEach(id => $(id).value='');
+    $('fService').value = 'Full Interior Detailing — $40';
+    hide($('bookingSuccess')); show($('bookingForm'));
+    hide($('slotHeader'));     show($('slotPrompt'));
+    hide($('slotGrid'));
+    hide($('bookingSummary')); show($('bookingWarning'));
+    $('submitBtn').disabled = true;
+    buildCalendar();
+}
+
+// ── Firebase realtime listener (runs once Firebase is ready) ───────────────
+db.ref('bookings').on('value', snap => {
+    bookings = snap.val() || {};
+    buildCalendar();
+    if (selectedDate) selectDate(selectedDate);
+    hide($('calLoading'));
+    show($('calContent'));
 });
 
-// ── BOOKING ──
-let selDate=null, selTime=null;
-function initCal() {
-  document.getElementById('book-body').style.display='block';
-  document.getElementById('book-success').style.display='none';
-  selDate=null; selTime=null;
-  const grid=document.getElementById('cal-grid');
-  grid.innerHTML='';
-  ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(d=>{
-    const el=document.createElement('div');
-    el.className='cal-dow'; el.textContent=d; grid.appendChild(el);
-  });
-  const now=new Date(), y=now.getFullYear(), m=now.getMonth();
-  document.getElementById('cal-month-lbl').textContent=now.toLocaleString('en-CA',{month:'long',year:'numeric'});
-  const fd=new Date(y,m,1).getDay(), dim=new Date(y,m+1,0).getDate();
-  for(let i=0;i<fd;i++){
-    const el=document.createElement('div'); el.className='cal-day'; grid.appendChild(el);
-  }
-  for(let d=1;d<=dim;d++){
-    const el=document.createElement('div'); el.className='cal-day'; el.textContent=d;
-    if(d<=now.getDate()){ el.classList.add('past'); }
-    else {
-      el.addEventListener('click',()=>{
-        document.querySelectorAll('.cal-day').forEach(x=>x.classList.remove('selected'));
-        el.classList.add('selected'); selDate=d; selTime=null;
-        renderTimes();
-        document.getElementById('time-section').style.display='block';
-        document.getElementById('form-section').style.display='none';
-        document.getElementById('confirm-btn').classList.remove('ready');
-      });
-    }
-    grid.appendChild(el);
-  }
-}
-function renderTimes() {
-  const g=document.getElementById('time-grid'); g.innerHTML='';
-  ['9:00 AM','10:00 AM','1:00 PM','2:00 PM','4:00 PM'].forEach(t=>{
-    const el=document.createElement('div'); el.className='time-chip'; el.textContent=t;
-    el.addEventListener('click',()=>{
-      document.querySelectorAll('.time-chip').forEach(x=>x.classList.remove('selected'));
-      el.classList.add('selected'); selTime=t;
-      document.getElementById('form-section').style.display='block';
-      checkBook();
-    });
-    g.appendChild(el);
-  });
-}
-function checkBook() {
-  const n=document.getElementById('g-name').value.trim();
-  const e=document.getElementById('g-email').value.trim();
-  const btn=document.getElementById('confirm-btn');
-  (n&&e&&selDate&&selTime) ? btn.classList.add('ready') : btn.classList.remove('ready');
-}
-function confirmBook() {
-  const name=document.getElementById('g-name').value.trim();
-  const email=document.getElementById('g-email').value.trim();
-  const note=document.getElementById('g-note').value.trim();
-  const mn=new Date().toLocaleString('en-CA',{month:'long'});
-  const subj=encodeURIComponent(`Coffee Chat Request — ${mn} ${selDate}`);
-  const body=encodeURIComponent(`Hi Dmytro,\n\n${name} would like to book a coffee chat.\nDate: ${mn} ${selDate}\nTime: ${selTime} CST\nEmail: ${email}${note?'\n\nNote: '+note:''}\n\nPlease confirm at your earliest convenience.`);
-  const em='denysend'+'@'+'myumanitoba.ca';
-  window.location.href=`mailto:${em}?subject=${subj}&body=${body}`;
-  document.getElementById('book-body').style.display='none';
-  const s=document.getElementById('book-success'); s.style.display='flex';
-  document.getElementById('book-success-txt').textContent=`Your request for ${mn} ${selDate} at ${selTime} is on its way. Dmytro will get back to you shortly.`;
-}
-
-// ── DOWNLOAD RESUME ──
-function downloadResume() {
-  const content=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Dmytro Denysenko — Resume</title>
-<style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:Georgia,serif;max-width:680px;margin:32px auto;padding:0 28px;color:#1a1a1a;line-height:1.5;font-size:13px;}h1{font-size:26px;margin-bottom:3px;}.meta{font-size:12px;color:#555;margin-bottom:2px;}.contact{font-size:12px;color:#C48D00;margin-bottom:16px;}.seeking{background:#FFF8E6;border-left:3px solid #F0AB00;padding:9px 13px;font-size:12px;margin-bottom:18px;}.seeking strong{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:#C48D00;display:block;margin-bottom:2px;}h2{font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:#C48D00;border-bottom:1px solid #E0E0E0;padding-bottom:3px;margin:16px 0 10px;}.entry{margin-bottom:10px;}.row{display:flex;justify-content:space-between;align-items:baseline;}.title{font-size:13px;font-weight:bold;}.date{font-size:10px;color:#767676;}.org{font-size:11px;color:#C48D00;margin-top:1px;}.desc{font-size:11px;color:#3D3D3D;margin-top:3px;line-height:1.5;}.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px;}.tag{background:#FFF8E6;border:1px solid rgba(240,171,0,0.35);color:#C48D00;font-size:10px;padding:2px 8px;}.ltag{background:#F5F5F5;border:1px solid #E0E0E0;color:#3D3D3D;font-size:10px;padding:2px 8px;}.no-print{background:#FFF8E6;border:1px solid #F0AB00;border-radius:6px;padding:10px 14px;margin-bottom:20px;font-family:sans-serif;font-size:12px;color:#C48D00;}@media print{.no-print{display:none;}@page{margin:18mm;}}</style></head><body>
-<div class="no-print">To save as PDF: Press <strong>Ctrl+P</strong> (or Cmd+P on Mac) → Change destination to <strong>"Save as PDF"</strong> → Save</div>
-<h1>Dmytro Denysenko</h1>
-<div class="meta">Finance &amp; Accounting · B.Comm (Honours) · Class of 2028</div>
-<div class="meta">I.H. Asper School of Business · University of Manitoba · Winnipeg, MB</div>
-<div class="contact">denysend@myumanitoba.ca &nbsp;·&nbsp; linkedin.com/in/dmytro-denysenko-61595a2a8</div>
-<div class="seeking"><strong>Actively Seeking</strong>Summer 2026 internship in finance, investment banking, or accounting</div>
-<h2>Education</h2>
-<div class="entry"><div class="row"><div class="title">B.Comm (Honours) — Finance &amp; Accounting</div><div class="date">2024 – 2028</div></div><div class="org">I.H. Asper School of Business · University of Manitoba</div><div class="desc">GPA 3.0 · Double major in Finance and Accounting. Focused on capital markets, corporate finance, and financial analysis.</div></div>
-<h2>Experience</h2>
-<div class="entry"><div class="row"><div class="title">Usher</div><div class="date">2024 – Present</div></div><div class="org">Concert Hall · Winnipeg, MB</div><div class="desc">Front-of-house operations, guest services, and event coordination.</div></div>
-<div class="entry"><div class="row"><div class="title">Community Assistant</div><div class="date">2024</div></div><div class="org">Steinbach Family Resource Center · Steinbach, MB</div><div class="desc">Provided community support services, developing interpersonal communication and client-facing skills.</div></div>
-<h2>Skills</h2>
-<div class="tags"><span class="tag">Capital Markets</span><span class="tag">Financial Modeling</span><span class="tag">Excel</span><span class="tag">Bloomberg</span><span class="tag">Corporate Finance</span><span class="tag">Financial Analysis</span></div>
-<h2>Languages</h2>
-<div class="tags"><span class="ltag">English</span><span class="ltag">Ukrainian</span><span class="ltag">Russian</span></div>
-</body></html>`;
-  const blob=new Blob([content],{type:'text/html'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');
-  a.href=url; a.download='Dmytro_Denysenko_Resume.html';
-  document.body.appendChild(a); a.click();
-  document.body.removeChild(a); URL.revokeObjectURL(url);
-}
-
-// ── AI EMAIL GENERATOR ──
-let genEmailText='';
-let selectedPurpose='';
-
-function selectPurpose(el, val) {
-  document.querySelectorAll('#purpose-chips .time-chip').forEach(c=>c.classList.remove('selected'));
-  el.classList.add('selected');
-  selectedPurpose=val;
-  const customInput=document.getElementById('fu-custom');
-  if(val==='__custom__'){ customInput.style.display='block'; customInput.focus(); }
-  else { customInput.style.display='none'; }
-}
-
-async function generateEmail() {
-  const theirName=document.getElementById('fu-name').value.trim();
-  if(!theirName){ alert('Please enter their name.'); return; }
-  if(!selectedPurpose){ alert('Please select a purpose.'); return; }
-  const theirRole=document.getElementById('fu-role').value.trim()||'a professional';
-  const where=document.getElementById('fu-where').value.trim()||'a recent event';
-  const customPurpose=document.getElementById('fu-custom').value.trim();
-  const purpose=(selectedPurpose==='__custom__') ? (customPurpose||'connect') : selectedPurpose;
-  const btn=document.getElementById('fu-btn');
-  btn.disabled=true; btn.textContent='Writing…';
-  document.getElementById('fu-loading').style.display='block';
-  document.getElementById('email-preview').style.display='none';
-  document.getElementById('email-actions').style.display='none';
-  genEmailText='';
-  const prompt=`Write a short, warm, professional follow-up email FROM Dmytro Denysenko (Finance & Accounting student, B.Comm Honours, University of Manitoba Asper School of Business, Class of 2028, GPA 3.0, interested in capital markets and corporate finance internships, originally from Ukraine) TO ${theirName} (${theirRole}). They met at: ${where}. The purpose of the email is: ${purpose}. Write 3-4 sentences, genuine, confident, and specific to the purpose. Write ONLY the email body — no subject line. Start with "Hi ${theirName}," and sign off as Dmytro.`;
-  try {
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:500,messages:[{role:'user',content:prompt}]})
-    });
-    const data=await res.json();
-    if(data.content&&data.content[0]&&data.content[0].text){ genEmailText=data.content[0].text.trim(); }
-    else if(data.error){ genEmailText='Could not generate: '+data.error.message; }
-    else { genEmailText='Unexpected response. Please try again.'; }
-  } catch(err) { genEmailText='Network error. Please try again.'; }
-  document.getElementById('fu-loading').style.display='none';
-  const preview=document.getElementById('email-preview');
-  preview.textContent=genEmailText; preview.style.display='block';
-  document.getElementById('email-actions').style.display='flex';
-  btn.disabled=false; btn.textContent='Regenerate';
-}
-
-function sendEmail() {
-  const subj=encodeURIComponent('Following up — Dmytro Denysenko');
-  const body=encodeURIComponent(genEmailText);
-  window.location.href=`mailto:?subject=${subj}&body=${body}`;
-}
-
-function copyEmail() {
-  navigator.clipboard.writeText(genEmailText).then(()=>{
-    const btns=document.querySelectorAll('#email-actions button');
-    const copyBtn=btns[1]; copyBtn.textContent='Copied!';
-    setTimeout(()=>copyBtn.textContent='Copy to clipboard',2000);
-  }).catch(()=>alert('Please select and copy the text manually.'));
-}
-
+// init button state
+$('submitBtn').disabled = true;
 </script>
 </body>
 </html>
